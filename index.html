@@ -117,8 +117,10 @@
                 let quentity =  product.children[2].firstChild.value;
                 let price = (product.children[3].innerHTML).replace('$','');
                 
-                product.children[5].innerHTML = '$'+calculateTotal(quentity,price); 
-            
+            If(!quentity == Nan || undefined){
+               product.children[5].innerHTML = '$'+calculateTotal(quentity,price); 
+
+             }
                 const tprice = (product.children[5].innerHTML).replace('$','');
                 arr.push(parseInt(tprice)); 
                 })
@@ -143,8 +145,10 @@
             const products = document.querySelectorAll('.products');
               products.forEach(product=>{
                 let quentity =  product.children[2].firstChild.value;
-                
-                cartArr.push(parseInt(quentity)); 
+                If(!quentity == Nan || undefined){
+                 cartArr.push(parseInt(quentity));
+                }
+                 
                 })
             carttotal();
 
