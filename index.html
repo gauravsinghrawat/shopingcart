@@ -122,6 +122,7 @@
                 arr.push(parseInt(tprice)); 
                 })
             total();
+            carttotal();
         }
         
         function total(){
@@ -144,14 +145,17 @@
                 
                 cartArr.push(parseInt(quentity)); 
                 })
-            const grandtl = cartArr.reduce((total,value)=>{
+            carttotal();
+
+        }
+       function carttotal(){
+            
+        const grandtl = cartArr.reduce((total,value)=>{
                 return total = total+ value;
             })
             cart.innerText = `${grandtl}`;
             cartArr = [];
-
-        }
-       
+       }
 //===================================================================
 //    const arr = [3,2,3,4,5,5];
 //      const reducer =   arr.reduce((total,value,index,arr)=>{
