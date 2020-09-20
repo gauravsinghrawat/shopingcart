@@ -110,7 +110,7 @@
         
         const cart = document.getElementById('cart');
         function change(){
-         carttotal();
+         
             const products = document.querySelectorAll('.products');
             
             products.forEach(product=>{
@@ -123,7 +123,7 @@
                 arr.push(parseInt(tprice)); 
                 })
             total();
-            
+            carttotal();
         }
         
         function total(){
