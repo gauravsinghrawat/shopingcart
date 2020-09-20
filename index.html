@@ -117,7 +117,7 @@
                 let quentity =  product.children[2].firstChild.value;
                 let price = (product.children[3].innerHTML).replace('$','');
                 
-            If(!quentity == Nan || undefined){
+            If(!quentity = NaN || undefined){
                product.children[5].innerHTML = '$'+calculateTotal(quentity,price); 
 
              }
@@ -145,7 +145,7 @@
             const products = document.querySelectorAll('.products');
               products.forEach(product=>{
                 let quentity =  product.children[2].firstChild.value;
-                If(!quentity == Nan || undefined){
+                If(!quentity = NaN || undefined){
                  cartArr.push(parseInt(quentity));
                 }
                  
