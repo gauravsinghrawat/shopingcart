@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-size: 1.3rem;
+        }
+        .wrapper{
+            position: absolute;
+            width: 100%;
+            height: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+           
+        }
+        img{
+            width: 50px;
+            height: auto;
+        }
+        table{
+            border: 2px solid #311313;
+        }
+        thead{
+            background: #000;
+            color: #fff;
+        }
+        thead>tr>td{
+            padding: 10px;
+            text-transform: uppercase;
+        }
+        tbody>tr>td:nth-child(even){
+            padding: 10px;
+            background: orange;
+            text-align: center;
+        }
+        tbody>tr>td:nth-child(odd){
+            padding: 10px;
+            background: orangered;
+            text-align: center;
+        }
+        tbody>tr>td button{
+            padding: 10px;
+            background: #000;
+            font-size: 1.2rem;
+            color: #fff;
+            box-shadow: 0px 0px 3px 2px #fff;
+            cursor: pointer;
+        }
+       
+        #grandtotal{
+            font-weight: 600;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <td>product</td>
+                    <td>image</td>
+                    <td>numOfItems</td>
+                    <td>price</td>
+                    <td>Add to cart</td>
+                    <td>total</td>
+                    <td>cart (<span id="cart"></span>)</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="products">
+                    <td>bheem</td>
+                    <td><img src="images/bheem.png" alt="bheem"></td>
+                    <td><input type="number" value="0" min="0" max="5" onchange="change()"></td>
+                    <td>$5</td>
+                    <td><button onclick="add()">add</button></td>
+                    <td></td>
+                </tr>
+                <tr class="products">
+                    <td>Car</td>
+                    <td><img src="./moto.png" alt="car"></td>
+                    <td><input type="number" value="0" min="0" max="5" onchange="change()"></td>
+                    <td>$3</td>
+                    <td><button onclick="add()">add</button></td>
+                    <td></td>
+                </tr>
+                <tr class="products">
+                    <td>Bycycle</td>
+                    <td><img src="./moto3.png" alt="bheem"></td>
+                    <td><input type="number" value="0" min="0" max="5" onchange="change()"></td>
+                    <td>$4</td>
+                    <td><button onclick="add()">add</button></td>
+                    <td></td>
+                    <td>TOTAL: <span id="grandtotal"></span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <script type="text/javascript">
+        
+        let arr = [];
+        const grand = document.getElementById('grandtotal');
+        
+        const cart = document.getElementById('cart');
+        function change(){
+            const products = document.querySelectorAll('.products');
+            
+            products.forEach(product=>{
+                let quentity =  product.children[2].firstChild.value;
+                let price = (product.children[3].innerHTML).replace('$','');
+                
+                product.children[5].innerHTML = '$'+calculateTotal(quentity,price); 
+            
+                const tprice = (product.children[5].innerHTML).replace('$','');
+                arr.push(parseInt(tprice)); 
+                })
+            total();
+        }
+        
+        function total(){
+            const grandtl = arr.reduce((total,value)=>{
+                return total = total+ value;
+            })
+            grand.innerText = `$${grandtl}`;
+             arr = [];
+        }
+         
+        function calculateTotal(quen,price){
+            return quen*price;
+        }
+
+        let cartArr = [];
+        function add(e){
+            const products = document.querySelectorAll('.products');
+              products.forEach(product=>{
+                let quentity =  product.children[2].firstChild.value;
+                
+                cartArr.push(parseInt(quentity)); 
+                })
+            const grandtl = cartArr.reduce((total,value)=>{
+                return total = total+ value;
+            })
+            cart.innerText = `${grandtl}`;
+            cartArr = [];
+
+        }
+       
+//===================================================================
+//    const arr = [3,2,3,4,5,5];
+//      const reducer =   arr.reduce((total,value,index,arr)=>{
+//          
+//            return total = total+value;
+//            
+//        })
+//      const filter =   arr.filter((value,index,arr)=>{
+//          
+//            if(value> 4){
+//                return value;
+//            }
+//        })
+//      const maper =   arr.map((value,index,arr)=>{
+//          
+//                return value*2;  
+//        })
+//      const find = arr.find((value,index,arr)=>{ // returns first match only
+//          return value >3;
+//      })
+//        console.log(`reducer:${reducer} ---- filter:${filter} ---- map:${maper} ---- find:${find}`);
+    
+    </script>
+</body>
+</html>
